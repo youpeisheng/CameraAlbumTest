@@ -3,9 +3,7 @@ package com.example.cameraalbumtest;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
-import androidx.multidex.MultiDex;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 if(Build.VERSION.SDK_INT>=24){
-                   imageUri= FileProvider.getUriForFile(MainActivity.this,"com.example.cameraalbumtest.fileprovider",outputImage);
+                   imageUri= FileProvider.getUriForFile(MainActivity.this,BuildConfig.APPLICATION_ID+".fileprovider",outputImage);
                 }else{
                     imageUri=Uri.fromFile(outputImage);
                 }
@@ -61,20 +59,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
-        switch (requestCode){
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
             case TAKE_PHOTO:
-                if(resultCode==RESULT_OK){
-                    try{
+                if (resultCode == RESULT_OK) {
+                    try {
                         //将拍摄的照片显示出来
-                        Bitmap bitmap= BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
                         picture.setImageBitmap(bitmap);
-                    }catch (FileNotFoundException e){
+                    } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
                 }
                 break;
-                default:
-                    break;
+            default:
+                break;
         }
 
     }
