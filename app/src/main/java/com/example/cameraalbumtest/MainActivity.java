@@ -147,8 +147,8 @@ public class MainActivity extends AppCompatActivity {
                 String selection=MediaStore.Images.Media._ID+"="+id;
                 imagePath=getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,selection);
             }else if("com.android.providers.downloads.documents".equals(uri_Author)){
-                Uri contentUri= ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"),Long.valueOf(docId));
-                imagePath=getImagePath(contentUri,null);
+                    Uri contentUri= ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"),Long.valueOf(docId));
+                    imagePath=getImagePath(contentUri,null);
             }
         }else if("content".equalsIgnoreCase(uri.getScheme())){
             //如果是content 类型的URI 则使用普通方式处理
