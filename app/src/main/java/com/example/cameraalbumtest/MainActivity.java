@@ -28,7 +28,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
+//测试
 public class MainActivity extends AppCompatActivity {
     public static final int TAKE_PHOTO=1;
     public static final int CHOOSE_PHOTO=2;
